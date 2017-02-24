@@ -13,7 +13,13 @@ class CreateUsersActivationTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('user_activations', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->string('token');
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+        });
     }
 
     /**
@@ -23,6 +29,6 @@ class CreateUsersActivationTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop("user_activations");
     }
 }
