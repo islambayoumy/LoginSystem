@@ -21,3 +21,5 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/user/activation/{token}', 'Auth\RegisterController@userActivation');
 
+Route::get('auth/google', 'GoogleController@redirectToProvider')->name('google.login');
+Route::get('auth/google/callback', 'GoogleController@handleProviderCallback');
